@@ -1,6 +1,12 @@
+import sys
 from stats import get_book_text, get_char_dict, sorted_char_list
 
-book_path = "books/frankenstein.txt"
+if len(sys.argv) != 2:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+
+book_path = sys.argv[1]
+
 count, book_content = get_book_text(book_path)
 characters = get_char_dict(book_content)
 char_list = sorted_char_list(characters)
