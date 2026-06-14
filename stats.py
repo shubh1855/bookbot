@@ -3,7 +3,6 @@ def get_book_text(book_path):
         book_content = book.read()
         words = book_content.split()
         count = len(words)
-        print(f"Found {count} total words")
         return count, book_content
 
 
@@ -18,13 +17,14 @@ def get_char_dict(text):
     return chars
 
 
-def sort_on(d):
-    return d["num"]
+def sort_on(item):
+    return item[1]
 
 
-def sorted_char_list(chars):
+def chars_dict_to_sorted_list(chars):
     sorted_list = []
+
     for char in chars:
-        sorted_list.append({"char": char, "num": chars[char]})
-    sorted_list.sort(reverse=True, key=sort_on)
-    return sorted_list
+        sorted_list.append((char, chars[char]))
+
+    return sorted(sorted_list, key=sort_on, reverse=True)
